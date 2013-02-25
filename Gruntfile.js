@@ -13,7 +13,7 @@ module.exports = function(grunt) {
                     port: 9000,
                     bases: path.resolve('public'),
                     keepalive: true,
-                    watchChanges: true,
+                    supervisor: true,
                     server: path.resolve('./app/server')
                 }
             }
