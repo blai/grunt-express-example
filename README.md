@@ -1,6 +1,10 @@
 # grunt-express-example
 
-An example for how to use socket.io and express using [grunt-express](https://github.com/blai/grunt-express)
+An example for how to use socket.io and express using [grunt-express](https://github.com/blai/grunt-express). The example will:
+
+* reload the browser (when opened) using [grunt-contrib-livereload](https://github.com/gruntjs/grunt-contrib-livereload) and [grunt-regarde](https://github.com/yeoman/grunt-regarde)
+* restart the server using the built-in feature of `grunt-express`, and it will do so when any of the server script is changed, or when you 'touch' the `.server` file in project root (using a `grunt-regarde` watcher setup, see `Gruntfile.js`)
+
 
 ## Getting Started
 
@@ -16,6 +20,8 @@ app.get('/hello', function(req, res){
     res.send('bonjour!');
 });
 ```
+
+To observe the browser refresh, change anything in the `<body>` tag of `public/index.html`, save the change and you should see browser automatically re-fresh.
 
 ## Documentation
 _(Coming soon)_

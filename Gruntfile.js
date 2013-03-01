@@ -12,12 +12,13 @@ module.exports = function(grunt) {
                 options: {
                     port: 9000,
                     bases: path.resolve('public'),
-                    keepalive: true,
-                    supervisor: true,
+                    monitor: {},
+                    debug: true,
                     server: path.resolve('./app/server')
                 }
             }
         },
+
         jshint: {
             options: {
                 jshintrc: '.jshintrc'
@@ -32,20 +33,18 @@ module.exports = function(grunt) {
                 src: ['test/**/*.js']
             },
         },
-        watch: {
-            gruntfile: {
-                files: '<%= jshint.gruntfile.src %>',
-                tasks: ['jshint:gruntfile']
+
+        regarde: {
+            pub: {
+                files: 'public/**/*',
+                tasks: ['livereload']
             },
-            // lib: {
-            //     files: '<%= jshint.lib.src %>',
-            //     tasks: ['jshint:lib', 'nodeunit']
-            // },
-            // test: {
-            //     files: '<%= jshint.test.src %>',
-            //     tasks: ['jshint:test', 'nodeunit']
-            // },
+            trigger: {
+                files: '.server', // touch this file to restart the express server, just an example
+                tasks: 'express-restart:livereload'
+            }
         },
+
         jsbeautifier: {
             files: ['Gruntfile.js'],
             options: {
@@ -70,12 +69,13 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-livereload');
     grunt.loadNpmTasks('grunt-jsbeautifier');
     grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-regarde');
 
     grunt.registerTask('format', ['jshint', 'jsbeautifier']);
-    grunt.registerTask('server', ['express', 'watch']);
+    grunt.registerTask('server', ['livereload-start', 'express', 'regarde']);
     // Default task.
     grunt.registerTask('default', ['format', 'server']);
 
