@@ -40,8 +40,12 @@ module.exports = function(grunt) {
                 tasks: ['livereload']
             },
             trigger: {
-                files: '.server', // touch this file to restart the express server, just an example
+                files: '.server',
                 tasks: 'express-restart:livereload'
+            },
+            express: {
+                files: 'app/templates/hello.dust',
+                tasks: 'livereload'
             }
         },
 

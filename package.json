@@ -42,6 +42,8 @@
   "dependencies": {
     "express": "~3.1.0",
     "socket.io": "~0.9.13",
-    "grunt-contrib-livereload": "~0.1.2"
+    "grunt-contrib-livereload": "~0.1.2",
+    "consolidate": "~0.8.0",
+    "dustjs-linkedin": "~1.2.1"
   }
 }
