@@ -21,7 +21,12 @@ app.get('/hello', function(req, res){
 });
 ```
 
-To observe the browser refresh, change anything in the `<body>` tag of `public/index.html`, save the change and you should see browser automatically re-fresh.
+To observe the browser refresh, first load http://localhost:9000/hello, then change the `<body>` tag of `app/templates/hello.dust` to following, save the change and you should see browser automatically re-fresh.
+```
+<body>
+    <h1>{greeting}!</h1>
+</body>
+```
 
 ## Documentation
 _(Coming soon)_
